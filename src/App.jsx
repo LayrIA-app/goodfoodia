@@ -1,40 +1,17 @@
-import { useState } from 'react'
-import Portada from './pages/Portada'
-import Login from './pages/Login'
-import AppShell from './layout/AppShell'
-
-function App() {
-  const [screen, setScreen] = useState('portada')
-  const [role, setRole] = useState(null)
-  const [user, setUser] = useState(null)
-
-  const handleSelectRole = (r) => {
-    setRole(r)
-    setScreen('login')
-  }
-
-  const handleLogin = (u) => {
-    setUser(u)
-    setScreen('shell')
-  }
-
-  const handleBack = () => {
-    setScreen('portada')
-    setRole(null)
-    setUser(null)
-  }
-
+/**
+ * Good Food IA · Fase 2 · patrón iframe
+ *
+ * El producto Fase 2 sirve la demo HTML de Fase 1 sin tocarla, dentro de un
+ * iframe a pantalla completa. La demo (`public/demo.html`) es la fuente de
+ * verdad y NO se modifica desde React. Cualquier cambio del producto se hace
+ * sobre la demo HTML, se copia a `public/demo.html` y se redespliega.
+ */
+export default function App() {
   return (
-    <>
-      {screen === 'portada' && <Portada onSelectRole={handleSelectRole} />}
-      {screen === 'login' && (
-        <Login role={role} onLogin={handleLogin} onBack={handleBack} />
-      )}
-      {screen === 'shell' && user && (
-        <AppShell user={user} onLogout={handleBack} />
-      )}
-    </>
+    <iframe
+      src="/demo.html"
+      title="Good Food IA · demo"
+      style={{ width: '100%', height: '100vh', border: 'none', display: 'block' }}
+    />
   )
 }
-
-export default App
