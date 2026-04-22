@@ -294,6 +294,8 @@ img,svg,video,canvas{max-width:100%;}
   #tb-name{display:none!important;}
   #tb-av{width:28px!important;height:28px!important;font-size:.58rem!important;}
   #tb-pill{font-size:.52rem!important;padding:2px 8px!important;}
+  /* Cambiar perfil vive en la sidebar en móvil — el topbar sólo conserva Salir */
+  .tb-switch-btn{display:none!important;}
 
   /* Sidebar — drawer lateral */
   #sidebar{position:fixed;left:0;top:0;height:100vh;z-index:150;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:4px 0 20px rgba(0,0,0,.4);}
@@ -726,7 +728,8 @@ function goBack(){
         <div style="width:26px;height:26px;border-radius:50%;background:#C9A84C;display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:700;color:#1A1208;" id="tb-av">MR</div>
         <span id="tb-name">Miguel Ruiz</span>
       </div>
-      <button onclick="salir()" style="padding:4px 10px;border:1px solid rgba(201,168,76,.2);border-radius:4px;background:transparent;color:rgba(201,168,76,.4);font-size:.56rem;cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;" onmouseover="this.style.borderColor='#C9A84C';this.style.color='#C9A84C'" onmouseout="this.style.borderColor='rgba(201,168,76,.2)';this.style.color='rgba(201,168,76,.4)'">↩ Salir</button>
+      <button onclick="cambiarPerfil()" class="tb-switch-btn" style="padding:4px 10px;border:1px solid rgba(201,168,76,.2);border-radius:4px;background:transparent;color:rgba(201,168,76,.4);font-size:.56rem;cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;" onmouseover="this.style.borderColor='#C9A84C';this.style.color='#C9A84C'" onmouseout="this.style.borderColor='rgba(201,168,76,.2)';this.style.color='rgba(201,168,76,.4)'">↺ Cambiar perfil</button>
+      <button onclick="salir()" class="tb-exit-btn" style="padding:4px 10px;border:1px solid rgba(201,168,76,.2);border-radius:4px;background:transparent;color:rgba(201,168,76,.4);font-size:.56rem;cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;" onmouseover="this.style.borderColor='#C9A84C';this.style.color='#C9A84C'" onmouseout="this.style.borderColor='rgba(201,168,76,.2)';this.style.color='rgba(201,168,76,.4)'">↩ Salir</button>
     </div>
   </div>
 
@@ -895,13 +898,28 @@ function animKPIs(){
   });
 }
 
-function salir(){
+function _volverPortada(){
   _clearNotifTimers();
   var ov=document.getElementById('alerts-overlay');
   if(ov)ov.classList.remove('open');
-  document.getElementById('appShell').style.display='none';
-  document.getElementById('loginScreen').style.display='none';
-  document.getElementById('roleScreen').style.display='flex';
+  var sb=document.getElementById('sidebar');
+  if(sb)sb.classList.remove('open');
+  var so=document.getElementById('sb-overlay');
+  if(so)so.classList.remove('open');
+  var app=document.getElementById('appShell');
+  if(app)app.style.display='none';
+  var log=document.getElementById('loginScreen');
+  if(log)log.style.display='none';
+  var rs=document.getElementById('roleScreen');
+  if(rs)rs.style.display='flex';
+  try{window.scrollTo(0,0);}catch(e){}
+}
+function salir(){
+  window._role=null;
+  _volverPortada();
+}
+function cambiarPerfil(){
+  _volverPortada();
 }
 // ── DEMO IA MODAL ──
 // -- MODULOS PREMIUM / INFINITUM --
@@ -1262,7 +1280,7 @@ function buildDirector(){
       <button class="sb-mod-btn" onclick="abrirModal('iot')" style="color:#00C8FF;">&#128274; IA Embebida e IoT</button>
     </div>
 
-    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">&#8617; Salir</button></div>`;
+    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="cambiarPerfil()">&#8634; Cambiar perfil</button><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">&#8617; Salir</button></div>`;
 
   document.getElementById('mainContent').innerHTML=`
 
@@ -2563,7 +2581,7 @@ function buildEmpleado(){
     <div class="sb-inf-block" id="inf-emp">
       <button class="sb-mod-btn" onclick="abrirModal('iot')" style="color:#00C8FF;">&#128274; IA Embebida e IoT</button>
     </div>
-    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">&#8617; Salir</button></div>`;
+    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="cambiarPerfil()">&#8634; Cambiar perfil</button><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">&#8617; Salir</button></div>`;
 
   // estados de mesas: 0=libre, 1=ocupada, 2=pidiendo, 3=cuenta, 4=alergeno
   const mesaStates = [1,0,2,1,4,0,3,1,0,2,1,0];
@@ -3084,7 +3102,7 @@ function buildCliente(){
     <button class="sb-btn" id="sb-c-comunicacion" onclick="showS('c-comunicacion')">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
       Comunicaci&#243;n <span class="sb-unread-dot" aria-label="mensajes sin leer"></span><span class="sb-ia">IA</span></button>
-    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">&#8617; Salir</button></div>`;
+    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="cambiarPerfil()">&#8634; Cambiar perfil</button><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">&#8617; Salir</button></div>`;
 
   document.getElementById('mainContent').innerHTML=`
 
@@ -3492,7 +3510,7 @@ function buildProveedor(){
     <button class="sb-btn" id="sb-p-comunicacion" onclick="showS('p-comunicacion')">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
       Comunicación <span class="sb-unread-dot" aria-label="mensajes sin leer"></span></button>
-    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">↩ Salir</button></div>`;
+    <div class="sb-foot"><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="cambiarPerfil()">↺ Cambiar perfil</button><button class="sb-btn" style="color:rgba(201,168,76,.6);font-weight:600" onclick="salir()">↩ Salir</button></div>`;
 
   document.getElementById('mainContent').innerHTML=`
 
