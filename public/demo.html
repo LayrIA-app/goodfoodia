@@ -387,6 +387,55 @@ img,svg,video,canvas{max-width:100%;}
   .sim-row{flex-direction:column!important;gap:8px!important;}
 }
 
+/* ══ REGLA 10 · MODAL ACCION (Ver/Ejecutar/Imprimir/Enviar/Confirmar) ══ */
+#am-overlay{display:none;position:fixed;inset:0;background:rgba(26,8,16,.85);backdrop-filter:blur(10px);z-index:99997;align-items:center;justify-content:center;padding:16px;overflow-y:auto;}
+#am-overlay.open{display:flex;animation:modalFadeIn .25s ease forwards;}
+.am-box{width:680px;max-width:96vw;max-height:90vh;background:#FAF7F2;border-radius:16px;box-shadow:0 60px 120px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden;position:relative;border:1px solid rgba(201,168,76,.25);}
+.am-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;background:rgba(26,18,8,.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#1A1208;z-index:5;transition:all .2s;}
+.am-close:hover{background:#C9A84C;color:#1A1208;}
+.am-hdr{padding:22px 24px 18px;border-bottom:1px solid rgba(201,168,76,.18);background:linear-gradient(180deg,#fff,#FAF7F2);flex-shrink:0;}
+.am-hdr-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+.am-icon{width:38px;height:38px;border-radius:10px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.32);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;color:#8B6B3A;}
+.am-title{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:#1A1208;letter-spacing:-.01em;line-height:1.2;flex:1;min-width:0;}
+.am-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;background:#C9A84C;color:#1A1208;font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}
+.am-badge.terra{background:#D4572A;color:#fff;}
+.am-badge.green{background:#1A6B30;color:#fff;}
+.am-meta{font-size:.66rem;color:#8B6B3A;letter-spacing:.04em;}
+.am-body{padding:18px 24px;overflow-y:auto;overflow-x:hidden;flex:1;min-height:0;}
+.am-section{margin-bottom:18px;}
+.am-section:last-child{margin-bottom:0;}
+.am-section-title{font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8B6B3A;margin-bottom:8px;}
+.am-section-content{font-size:.74rem;color:#1A1208;line-height:1.7;}
+.am-section-content strong{color:#1A1208;font-weight:700;}
+.am-card{background:#fff;border:1px solid rgba(201,168,76,.22);border-radius:10px;padding:14px;margin-top:8px;}
+.am-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(201,168,76,.12);font-size:.7rem;}
+.am-row:last-child{border-bottom:none;}
+.am-row-lbl{color:#8B6B3A;}
+.am-row-val{color:#1A1208;font-weight:600;}
+.am-footer{padding:14px 24px 16px;border-top:1px solid rgba(201,168,76,.18);background:#fff;display:flex;gap:10px;flex-shrink:0;align-items:stretch;flex-wrap:wrap;position:relative;}
+.am-edit{flex:1;min-width:130px;padding:11px 16px;background:#fff;border:1px solid rgba(201,168,76,.4);border-radius:10px;color:#8B6B3A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.7rem;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.am-edit:hover{background:rgba(201,168,76,.08);border-color:#C9A84C;color:#1A1208;}
+.am-send{flex:1.4;min-width:170px;position:relative;}
+.am-send-toggle{width:100%;padding:11px 16px;background:#1A1208;border:none;border-radius:10px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.7rem;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.am-send-toggle:hover{background:#2C1A0E;}
+.am-send-menu{display:none;position:absolute;bottom:calc(100% + 6px);left:0;right:0;background:#fff;border:1px solid rgba(201,168,76,.3);border-radius:10px;box-shadow:0 12px 36px rgba(26,18,8,.25);overflow:hidden;z-index:10;}
+.am-send-menu.open{display:block;animation:fadeUp .2s ease;}
+.am-send-opt{display:flex;align-items:center;gap:10px;padding:11px 14px;background:transparent;border:none;width:100%;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;color:#1A1208;text-align:left;border-bottom:1px solid rgba(201,168,76,.12);}
+.am-send-opt:last-child{border-bottom:none;}
+.am-send-opt:hover{background:rgba(201,168,76,.08);}
+.am-send-opt-ico{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.am-send-opt-ico.email{background:rgba(55,138,221,.12);color:#378ADD;}
+.am-send-opt-ico.wa{background:rgba(37,211,102,.12);color:#25D366;}
+.am-send-opt-detail{font-size:.58rem;color:#8B6B3A;font-weight:500;display:block;margin-top:1px;}
+@media(max-width:768px){
+  .am-box{max-height:92vh;width:96vw;}
+  .am-hdr{padding:16px 16px 14px;}
+  .am-body{padding:14px 16px;}
+  .am-footer{padding:12px 16px 14px;flex-direction:column;}
+  .am-edit,.am-send{flex:auto;width:100%;min-width:0;}
+  .am-title{font-size:.95rem;}
+}
+
 </style>
 </head>
 <body>
@@ -1595,8 +1644,8 @@ function buildDirector(){
           </div>`).join('')}
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <button onclick="demoIA('Ajuste autom\u00e1tico de carta IA','Good Food IA ha marcado la lubina como producto en vigilancia y ha generado una sugerencia de precio: +2\u20ac por raci\u00f3n. Si el director aprueba, el cambio se aplica en la carta digital en tiempo real sin intervenci\u00f3n del equipo.')" style="padding:10px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.64rem;cursor:pointer;">Ajustar carta ahora</button>
-          <button onclick="demoIA('Alerta a cocina enviada','Good Food IA ha notificado al jefe de cocina la desviaci\u00f3n de merma en lubina con protocolo de revisi\u00f3n de corte y aprovechamiento. Respuesta esperada en 15 minutos.')" style="padding:10px;background:rgba(212,87,42,.12);border:1px solid rgba(212,87,42,.4);border-radius:8px;color:#D4572A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.64rem;cursor:pointer;">Revisar merma</button>
+          <button onclick="gfModalAjustarCarta()" style="padding:10px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.64rem;cursor:pointer;">Ajustar carta ahora</button>
+          <button onclick="gfModalRevisarMerma()" style="padding:10px;background:rgba(212,87,42,.12);border:1px solid rgba(212,87,42,.4);border-radius:8px;color:#D4572A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.64rem;cursor:pointer;">Revisar merma</button>
         </div>
       </div>
     </div>
@@ -1714,7 +1763,7 @@ function buildDirector(){
             <div style="font-size:.6rem;color:#8B6B3A;">${r.d}</div>
           </div>`).join('')}
         </div>
-        <button onclick="demoIA('Optimizaci\u00f3n de rentabilidad por turno IA','Good Food IA aplicar\u00eda estas 4 acciones autom\u00e1ticamente en producci\u00f3n: ajuste de plantilla lunes, nuevo men\u00fa corto, campa\u00f1a de empresa jueves y precio lubina. Impacto total estimado: +1.020\u20ac/mes sin inversi\u00f3n adicional.')" style="width:100%;padding:11px;background:linear-gradient(135deg,#1A1208,#2C1A0E);border:1px solid rgba(201,168,76,.4);border-radius:9px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <button onclick="gfModalRentabilidadTurno()" style="width:100%;padding:11px;background:linear-gradient(135deg,#1A1208,#2C1A0E);border:1px solid rgba(201,168,76,.4);border-radius:9px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           Aplicar todas las optimizaciones IA &middot; +1.020&#8364;/mes
         </button>
@@ -1792,7 +1841,7 @@ function buildDirector(){
             </div>
           </div>`).join('')}
         </div>
-        <button onclick="demoIA('Actualizaci\u00f3n de carta con IA','Good Food IA ha generado la nueva carta de temporada con los 4 platos sugeridos, eliminando foie y carpaccio. La nueva carta estima un margen medio del 72,4% vs 68,2% actual. En producci\u00f3n el cambio se aplica en la carta digital en tiempo real y se notifica a cocina autom\u00e1ticamente.')" style="width:100%;padding:11px;background:#C9A84C;border:none;border-radius:9px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <button onclick="gfModalActualizarCarta()" style="width:100%;padding:11px;background:#C9A84C;border:none;border-radius:9px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           Actualizar carta con IA &middot; +4,2% margen estimado
         </button>
@@ -1893,7 +1942,7 @@ function buildDirector(){
             <div style="font-size:.58rem;color:#1A1208;margin-top:4px;">▲ +2,1€ vs feb</div>
           </div>
         </div>
-        <button class="btn btn-dk" style="width:100%;" onclick="this.textContent='✓ Informe generado · descarga lista';this.style.background='#1A6B30';this.style.color='#fff';setTimeout(()=>{this.textContent='Descargar informe PDF · Good Food IA';this.style.background='';this.style.color='';},2800);">Descargar informe PDF · Good Food IA</button>
+        <button class="btn btn-dk" style="width:100%;" onclick="gfModalInformePDF()">Descargar informe PDF · Good Food IA</button>
       </div>
     </div>
   </div>
@@ -1999,7 +2048,7 @@ function buildDirector(){
               <input type="date" style="width:100%;padding:8px;border:1px solid rgba(201,168,76,.3);border-radius:7px;font-size:.7rem;font-family:'Space Grotesk',sans-serif;background:#FAF7F2;color:#1A1208;box-sizing:border-box;">
             </div>
           </div>
-          <button onclick="demoIA('Propuesta generada en 8 minutos','Good Food IA ha creado una propuesta completa: menú adaptado al tipo de evento, precio por comensal con margen óptimo calculado sobre 34 eventos similares, opciones veganas y sin glúten, cláusulas de cancelación y descuento por antelación. Firma digital lista para enviar. El cliente recibe la propuesta en su email en 30 segundos.')" style="width:100%;padding:11px;background:linear-gradient(135deg,#1A1208,#2C1A0E);border:1px solid rgba(201,168,76,.4);border-radius:9px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+          <button onclick="gfModalGenerarPropuesta()" style="width:100%;padding:11px;background:linear-gradient(135deg,#1A1208,#2C1A0E);border:1px solid rgba(201,168,76,.4);border-radius:9px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             Generar propuesta con IA
           </button>
@@ -2019,7 +2068,7 @@ function buildDirector(){
               <div style="font-size:.58rem;color:#8B6B3A;margin-bottom:5px;">${p.m}</div>
               <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div style="font-size:.72rem;font-weight:700;color:#1A1208;">${p.v}</div>
-                <button onclick="demoIA('Propuesta · ${p.t}','En producción Good Food IA muestra la propuesta completa con menú detallado, precio por comensal, condiciones y estado de firma digital en tiempo real.')" style="padding:4px 10px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);border-radius:6px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-size:.58rem;font-weight:700;cursor:pointer;">Ver propuesta</button>
+                <button onclick="gfModalVerPropuesta(${JSON.stringify(p)})" style="padding:4px 10px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);border-radius:6px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-size:.58rem;font-weight:700;cursor:pointer;">Ver propuesta</button>
               </div>
             </div>`).join('')}
           </div>
@@ -2087,7 +2136,7 @@ function buildDirector(){
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:.72rem;font-weight:600;color:#1A1208;">Aforo del restaurante</span><span style="font-size:.9rem;font-weight:700;color:#C9A84C;" id="sim-aforo-val">54 plazas</span></div>
           <input type="range" min="20" max="150" value="54" step="2" id="sim-aforo" oninput="simRecalc()" style="width:100%;accent-color:#C9A84C;">
           <div style="display:flex;justify-content:space-between;font-size:.56rem;color:#8B6B3A;margin-top:2px;"><span>20</span><span>150</span></div>
-        <button onclick="demoIA('Good Food IA optimizando tu escenario...','La IA ha analizado 1.247 combinaciones posibles de ocupación, ticket, food cost y personal para tu restaurante. El escenario óptimo calculado: <strong>ocupación 82% · ticket 42€ · food cost 25% · personal 32%</strong> = <strong>beneficio mensual estimado 24.800€</strong> con riesgo mínimo de desviación. En producción Good Food IA aplica estos ajustes automáticamente sin que tengas que mover ningún slider.')" style="width:100%;margin-top:16px;padding:12px;background:linear-gradient(135deg,#1A1208,#2C1A0E);border:1px solid rgba(201,168,76,.4);border-radius:10px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.76rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;" onmouseover="this.style.background='linear-gradient(135deg,#2C1A0E,#3D2414)'" onmouseout="this.style.background='linear-gradient(135deg,#1A1208,#2C1A0E)'">
+        <button onclick="gfModalSimuladorEscenario()" style="width:100%;margin-top:16px;padding:12px;background:linear-gradient(135deg,#1A1208,#2C1A0E);border:1px solid rgba(201,168,76,.4);border-radius:10px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.76rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;" onmouseover="this.style.background='linear-gradient(135deg,#2C1A0E,#3D2414)'" onmouseout="this.style.background='linear-gradient(135deg,#1A1208,#2C1A0E)'">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           Optimizar escenario con IA
           <span style="font-size:.62rem;opacity:.6;font-weight:400;">(ajuste automático al escenario óptimo)</span>
@@ -3244,12 +3293,12 @@ function buildCliente(){
           <div style="background:linear-gradient(135deg,#1A1208,#2C1A0E);border-radius:12px;padding:16px;border:1px solid rgba(201,168,76,.3);">
             <div style="font-size:.7rem;font-weight:700;color:#C9A84C;margin-bottom:6px;">🍷 Maridaje exclusivo · Ribera del Duero</div>
             <div style="font-size:.64rem;color:rgba(232,224,208,.7);line-height:1.7;margin-bottom:10px;">Cata privada de 3 vinos de Ribera con el chuletón que tanto te gusta. Disponible el próximo sábado para 2 personas.</div>
-            <button style="padding:7px 14px;background:#C9A84C;border:none;border-radius:7px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.64rem;font-weight:700;cursor:pointer;" onclick="this.textContent='✓ Solicitud enviada';this.style.background='#1A6B30';this.style.color='#fff';setTimeout(()=>{this.textContent='Reservar experiencia';this.style.background='#C9A84C';this.style.color='#1A1208';},2800);">Reservar experiencia</button>
+            <button style="padding:7px 14px;background:#C9A84C;border:none;border-radius:7px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.64rem;font-weight:700;cursor:pointer;" onclick="gfModalReservarExperiencia(this)">Reservar experiencia</button>
           </div>
           <div style="background:linear-gradient(135deg,#1A1208,#2C1A0E);border-radius:12px;padding:16px;border:1px solid rgba(201,168,76,.3);">
             <div style="font-size:.7rem;font-weight:700;color:#C9A84C;margin-bottom:6px;">👨‍🍳 Mesa del chef · viernes</div>
             <div style="font-size:.64rem;color:rgba(232,224,208,.7);line-height:1.7;margin-bottom:10px;">Mesa especial junto a la cocina. El chef explica cada plato. Menú exclusivo de 7 pasos. Apta para tu perfil de alérgenos.</div>
-            <button style="padding:7px 14px;background:#C9A84C;border:none;border-radius:7px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.64rem;font-weight:700;cursor:pointer;" onclick="this.textContent='✓ Solicitud enviada';this.style.background='#1A6B30';this.style.color='#fff';setTimeout(()=>{this.textContent='Reservar experiencia';this.style.background='#C9A84C';this.style.color='#1A1208';},2800);">Reservar experiencia</button>
+            <button style="padding:7px 14px;background:#C9A84C;border:none;border-radius:7px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.64rem;font-weight:700;cursor:pointer;" onclick="gfModalReservarExperiencia(this)">Reservar experiencia</button>
           </div>
         </div>
       </div>
@@ -3305,8 +3354,8 @@ function buildCliente(){
           <div style="margin-top:10px;font-size:.64rem;color:#1A6B30;font-weight:700">Precio total: 148&#8364; · IVA incluido · Sin gluten en todos los platos &#10003;</div>
         </div>
         <div style="display:flex;gap:8px">
-          <button onclick="this.textContent='&#10003; Men&#250; confirmado';this.style.background='#1A6B30';this.style.color='#fff'" style="flex:1;padding:10px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;cursor:pointer">Confirmar men&#250; y firmar</button>
-          <button onclick="demoIA('Solicitar cambios en el men&#250;','Good Food IA ajusta el men&#250; autom&#225;ticamente seg&#250;n tus preferencias y vuelve a enviarte la propuesta actualizada en menos de 5 minutos.')" style="flex:1;padding:10px;background:transparent;border:1px solid rgba(201,168,76,.3);border-radius:8px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;cursor:pointer">Solicitar cambios</button>
+          <button onclick="gfModalConfirmarMenuEspecial(this)" style="flex:1;padding:10px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;cursor:pointer">Confirmar men&#250; y firmar</button>
+          <button onclick="gfModalSolicitarCambiosMenu()" style="flex:1;padding:10px;background:transparent;border:1px solid rgba(201,168,76,.3);border-radius:8px;color:#C9A84C;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;cursor:pointer">Solicitar cambios</button>
         </div>
       </div>
       <div class="card">
@@ -3497,8 +3546,8 @@ function buildProveedor(){
           <div style="text-align:center;"><div style="font-size:1.1rem;font-weight:700;color:#1A1208;">10:00</div><div style="font-size:.52rem;color:#8B6B3A;text-transform:uppercase;letter-spacing:.08em;">Hora</div></div>
         </div>
         <div style="display:flex;gap:8px;">
-          <button onclick="this.textContent='✓ Confirmado';this.style.background='#1A6B30';this.style.color='#fff';this.style.border='none';" style="flex:1;padding:9px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;">Confirmar pedido</button>
-          <button style="flex:1;padding:9px;background:transparent;border:1px solid rgba(212,87,42,.4);border-radius:8px;color:#D4572A;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;" onclick="this.textContent='✓ Solicitud enviada a proveedor';this.style.borderColor='#1A6B30';this.style.color='#1A6B30';setTimeout(()=>{this.textContent='Modificar cantidad';this.style.borderColor='rgba(212,87,42,.4)';this.style.color='#D4572A';},2800);">Modificar cantidad</button>
+          <button onclick="gfModalConfirmarPedido(this)" style="flex:1;padding:9px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;">Confirmar pedido</button>
+          <button style="flex:1;padding:9px;background:transparent;border:1px solid rgba(212,87,42,.4);border-radius:8px;color:#D4572A;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;" onclick="gfModalModificarCantidadPedido(this)">Modificar cantidad</button>
         </div>
       </div>
     </div>
@@ -3543,8 +3592,8 @@ function buildProveedor(){
           </div>
           <div class="ian" style="margin-bottom:12px;"><div class="ian-ico">🧠</div><div class="ian-txt"><strong>Good Food IA:</strong> entrega registrada a las 10:14. El jefe de cocina est&#225; verificando el calibrado de las piezas antes de confirmar.</div></div>
           <div style="display:flex;gap:8px;">
-            <button onclick="this.textContent='&#10003; Albar&#225;n enviado';this.style.background='#1A6B30';this.style.color='#fff';this.style.border='none';" style="flex:1;padding:9px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;">Enviar albar&#225;n digital</button>
-            <button onclick="this.textContent='&#10003; Incidencia registrada';this.style.borderColor='#D4572A';this.style.background='rgba(212,87,42,.12)';setTimeout(()=>{this.textContent='Reportar incidencia';this.style.background='transparent';},2800);" style="flex:1;padding:9px;background:transparent;border:1px solid rgba(212,87,42,.4);border-radius:8px;color:#D4572A;font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;">Reportar incidencia</button>
+            <button onclick="gfModalEnviarAlbaran(this)" style="flex:1;padding:9px;background:#C9A84C;border:none;border-radius:8px;color:#1A1208;font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;">Enviar albar&#225;n digital</button>
+            <button onclick="gfModalReportarIncidencia(this)" style="flex:1;padding:9px;background:transparent;border:1px solid rgba(212,87,42,.4);border-radius:8px;color:#D4572A;font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;">Reportar incidencia</button>
           </div>
         </div>
       </div>
@@ -3848,6 +3897,546 @@ function provSendChat(){
 function provChatQuick(q){
   var input=document.getElementById('prov-chat-input');
   if(input){input.value=q;provSendChat();}
+}
+
+// ══════════════ REGLA 10 · MODAL ACCION + EMAIL + WHATSAPP ══════════════
+// Cada CTA Ver/Ejecutar/Imprimir/Enviar/Confirmar abre un modal con datos
+// completos + Editar + Enviar como esta (Email, WhatsApp con cliente
+// pre-rellenado del contexto). Sin API, sin backend.
+
+// Pestaña Email del cliente que tiene la sesión actual (se puede sobrescribir
+// desde cualquier botón). Por defecto refleja al usuario logado.
+var _amCtxEmail = '';
+var _amCtxTel   = '';
+
+function enviarEmail(emailCliente, asunto, cuerpo){
+  var dest = (emailCliente || '').trim();
+  var mailto = 'mailto:' + encodeURIComponent(dest)
+    + '?subject=' + encodeURIComponent(asunto || '')
+    + '&body=' + encodeURIComponent(cuerpo || '');
+  window.open(mailto, '_blank');
+}
+
+function enviarWhatsApp(telefonoCliente, texto){
+  // formato internacional sin +/espacios: ej. 34944555000
+  var tel = String(telefonoCliente || '').replace(/[^0-9]/g, '');
+  var url = 'https://wa.me/' + tel + '?text=' + encodeURIComponent(texto || '');
+  window.open(url, '_blank');
+}
+
+function _amBuildSections(sections){
+  if(!sections || !sections.length) return '';
+  return sections.map(function(s){
+    var content = s.rows ? '<div class="am-card">' + s.rows.map(function(r){
+      return '<div class="am-row"><span class="am-row-lbl">' + r.l + '</span><span class="am-row-val">' + r.v + '</span></div>';
+    }).join('') + '</div>' : '';
+    return '<div class="am-section">'
+      + (s.title ? '<div class="am-section-title">' + s.title + '</div>' : '')
+      + (s.content ? '<div class="am-section-content">' + s.content + '</div>' : '')
+      + content
+      + '</div>';
+  }).join('');
+}
+
+function accionModal(cfg){
+  cfg = cfg || {};
+  var ov = document.getElementById('am-overlay');
+  if(!ov){
+    ov = document.createElement('div');
+    ov.id = 'am-overlay';
+    ov.onclick = function(e){ if(e.target===ov) cerrarAccion(); };
+    document.body.appendChild(ov);
+  }
+  var badgeCls = cfg.badgeColor === 'terra' ? 'terra' : (cfg.badgeColor === 'green' ? 'green' : '');
+  var iconHtml = cfg.icon || '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+  var fechaHtml = cfg.fecha ? '<span class="am-meta">' + cfg.fecha + '</span>' : '';
+  var badgeHtml = cfg.badge ? '<span class="am-badge ' + badgeCls + '">' + cfg.badge + '</span>' : '';
+  var sectionsHtml = _amBuildSections(cfg.sections);
+  var emailDest = cfg.email || _amCtxEmail || 'info@goodfood.es';
+  var telDest   = cfg.telefono || _amCtxTel || '34944555000';
+  var asunto    = cfg.asunto || cfg.title || 'Notificación Good Food IA';
+  var cuerpoEmail = cfg.cuerpoEmail || asunto;
+  var textoWa     = cfg.textoWa || asunto;
+  var editarLabel = cfg.editarLabel || 'Editar';
+
+  ov.innerHTML = '<div class="am-box" onclick="event.stopPropagation()">'
+    + '<button class="am-close" onclick="cerrarAccion()" aria-label="Cerrar">&times;</button>'
+    + '<div class="am-hdr"><div class="am-hdr-row"><div class="am-icon">' + iconHtml + '</div>'
+      + '<div class="am-title">' + (cfg.title || 'Detalle') + '</div>' + badgeHtml + '</div>'
+      + fechaHtml + '</div>'
+    + '<div class="am-body">' + sectionsHtml + '</div>'
+    + '<div class="am-footer">'
+      + '<button class="am-edit" onclick="cerrarAccion();showToastIA(\'' + editarLabel.replace(/\'/g,"\\'") + ' · ' + (cfg.title || '').replace(/\'/g,"\\'") + '\')">'
+        + '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>'
+        + editarLabel + '</button>'
+      + '<div class="am-send">'
+        + '<button class="am-send-toggle" onclick="event.stopPropagation();_amToggleSend()">'
+          + '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>'
+          + 'Enviar como está <span style="font-size:.6em;">▾</span></button>'
+        + '<div class="am-send-menu" id="am-send-menu">'
+          + '<button class="am-send-opt" onclick="cerrarAccion();enviarEmail(\'' + emailDest.replace(/\'/g,"\\'") + '\',\'' + asunto.replace(/\'/g,"\\'") + '\',\'' + cuerpoEmail.replace(/\'/g,"\\'").replace(/\n/g,'\\n') + '\')">'
+            + '<div class="am-send-opt-ico email"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>'
+            + '<div>Email · <strong>' + emailDest + '</strong><span class="am-send-opt-detail">Abre tu cliente de correo con asunto y cuerpo prerrellenados</span></div></button>'
+          + '<button class="am-send-opt" onclick="cerrarAccion();enviarWhatsApp(\'' + telDest.replace(/\'/g,"\\'") + '\',\'' + textoWa.replace(/\'/g,"\\'").replace(/\n/g,'\\n') + '\')">'
+            + '<div class="am-send-opt-ico wa"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>'
+            + '<div>WhatsApp · <strong>+' + telDest + '</strong><span class="am-send-opt-detail">Abre WhatsApp con texto prerrellenado para el destinatario</span></div></button>'
+        + '</div>'
+      + '</div>'
+    + '</div>'
+    + '</div>';
+  ov.classList.add('open');
+  // cerrar dropdown al click fuera
+  setTimeout(function(){
+    document.addEventListener('click', _amOutsideHandler, true);
+  }, 0);
+}
+
+function _amToggleSend(){
+  var m = document.getElementById('am-send-menu');
+  if(m) m.classList.toggle('open');
+}
+function _amOutsideHandler(e){
+  var m = document.getElementById('am-send-menu');
+  if(!m) return;
+  if(!m.contains(e.target) && !e.target.closest('.am-send-toggle')) m.classList.remove('open');
+}
+function cerrarAccion(){
+  var ov = document.getElementById('am-overlay');
+  if(ov) ov.classList.remove('open');
+  document.removeEventListener('click', _amOutsideHandler, true);
+}
+// Toast IA reutilizable (si no existe ya en la página)
+if(typeof window.showToastIA !== 'function'){
+  window.showToastIA = function(msg){
+    var t = document.createElement('div');
+    t.style.cssText = 'position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:#1A1208;color:#FAF7F2;padding:11px 22px;border-radius:10px;font-size:.78rem;font-weight:500;z-index:99999;max-width:calc(100vw - 32px);text-align:center;line-height:1.4;box-shadow:0 6px 24px rgba(26,18,8,.3);';
+    t.textContent = msg || 'Listo';
+    document.body.appendChild(t);
+    setTimeout(function(){ t.style.opacity = '0'; t.style.transition = 'opacity .4s'; setTimeout(function(){ if(t.parentNode) t.remove(); }, 400); }, 2600);
+  };
+}
+
+// ── REGLA 10 · Modales por accion (uno por cada CTA Ver/Ejecutar/Imprimir/Enviar) ──
+// Contactos del contexto Good Food IA
+var GF_CTX = {
+  cocina:    { email:'cocina@goodfood.es',    tel:'34944555010', nombre:'Jefe de cocina · Ana Ruiz' },
+  sala:      { email:'sala@goodfood.es',      tel:'34944555011', nombre:'Jefe de sala · Carlos M.' },
+  director:  { email:'direccion@goodfood.es', tel:'34944555000', nombre:'Director · Miguel Ruiz' },
+  reservas:  { email:'reservas@goodfood.es',  tel:'34944555000', nombre:'Reservas Good Food IA' },
+  proveedor: { email:'pedidos@carnesibanez.es', tel:'34944333222', nombre:'Carnes Ibáñez · Comercial' },
+  cliente_corp: { email:'eventos@bilbaoig.es', tel:'34944111000', nombre:'Bilbao Industrial Group' }
+};
+
+// DIRECTOR · Costes — Ajustar carta (lubina +2€)
+function gfModalAjustarCarta(){
+  accionModal({
+    title:'Ajuste de precio · Lubina al horno',
+    badge:'AJUSTE IA · LISTO PARA APROBAR', badgeColor:'',
+    fecha:'Generado por Good Food IA · hoy 13:42',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M9 12h6M9 16h4"/></svg>',
+    sections:[
+      {title:'Plato afectado', content:'<strong>Lubina al horno con verduras de temporada</strong> · Carta principal · Categoría Pescados.'},
+      {title:'Análisis IA', rows:[
+        {l:'Coste materia prima',v:'9,40 €'},
+        {l:'Precio carta actual',v:'21,00 €'},
+        {l:'Margen actual',v:'55,2% (objetivo 60%)'},
+        {l:'Food cost desviado',v:'+1,4% sobre objetivo'},
+        {l:'Score IA del plato',v:'6,8 / 10'}
+      ]},
+      {title:'Propuesta IA', content:'Subir precio a <strong>23,00 €</strong> (+2 €/ración). Margen estimado: <strong>59,1%</strong>. Impacto mensual: <strong>+340 €</strong>. Riesgo de churn cliente: bajo (4 raciones/día media).'},
+      {title:'Aprobación', content:'Si el director aprueba, el cambio se aplica en la carta digital en tiempo real sin intervención del equipo. Cocina recibe notificación automática.'}
+    ],
+    editarLabel:'Editar propuesta',
+    email:GF_CTX.cocina.email, telefono:GF_CTX.cocina.tel,
+    asunto:'Ajuste carta · Lubina +2€/ración (aprobado por dirección)',
+    cuerpoEmail:'Hola Ana,\n\nGood Food IA ha generado un ajuste de precio para la lubina al horno:\n\n- Precio actual: 21,00 €\n- Precio propuesto: 23,00 € (+2 €)\n- Margen estimado tras ajuste: 59,1% (vs 55,2% actual)\n- Impacto mensual estimado: +340 €\n\nRevisa y confirma para aplicar en la carta digital.\n\nDirección · Good Food IA',
+    textoWa:'Ana, ajuste IA en lubina: 21€ → 23€. Margen sube a 59%. ¿Lo aplicamos a partir del servicio de cena? — Dirección Good Food IA'
+  });
+}
+
+// DIRECTOR · Costes — Revisar merma (alerta cocina)
+function gfModalRevisarMerma(){
+  accionModal({
+    title:'Alerta de merma · Lubina',
+    badge:'PROTOCOLO COCINA', badgeColor:'terra',
+    fecha:'Detectado por Good Food IA · hoy 12:18',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 19h20L12 2z"/><path d="M12 9v5M12 16.5v.5"/></svg>',
+    sections:[
+      {title:'Diagnóstico', content:'Merma de lubina <strong>+1,3% sobre objetivo</strong> en turno almuerzo (real 4,8% vs objetivo 3,5%). 4ª semana consecutiva al alza. Origen probable: cambio de proveedor.'},
+      {title:'Datos del turno', rows:[
+        {l:'Lubinas recepcionadas',v:'8 piezas (3,2 kg)'},
+        {l:'Mermadas en corte',v:'380 g (12% pieza)'},
+        {l:'Servidas',v:'5 raciones'},
+        {l:'Stock fin turno',v:'3 raciones'}
+      ]},
+      {title:'Protocolo IA recomendado', content:'1) Auditoría inmediata de recepción próximas 3 entregas · 2) Revisión técnica de corte con chef · 3) Comparación con histórico Carnes Ibáñez (proveedor anterior). Respuesta esperada cocina en 15 minutos.'}
+    ],
+    editarLabel:'Editar protocolo',
+    email:GF_CTX.cocina.email, telefono:GF_CTX.cocina.tel,
+    asunto:'Alerta merma lubina · protocolo de revisión activo',
+    cuerpoEmail:'Hola Ana,\n\nGood Food IA detectó desviación de merma en lubina (+1,3% sobre objetivo, 4ª semana consecutiva).\n\nRevisión solicitada:\n1) Auditoría recepción próximas 3 entregas\n2) Revisión técnica de corte\n3) Comparativa con proveedor anterior (Carnes Ibáñez)\n\nRespuesta esperada en 15 minutos.\n\nDirección · Good Food IA',
+    textoWa:'Ana, merma lubina +1,3% sobre objetivo · 4ª semana subiendo · revisamos hoy en cocina antes del servicio de cena? — Dirección'
+  });
+}
+
+// DIRECTOR · Rentabilidad — Aplicar plan IA (4 acciones)
+function gfModalRentabilidadTurno(){
+  accionModal({
+    title:'Plan de optimización · Rentabilidad por turno',
+    badge:'4 ACCIONES IA · LISTO PARA APLICAR',
+    fecha:'Generado por Good Food IA · análisis 90 días',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 17l4-8 4 4 4-6 4 4"/></svg>',
+    sections:[
+      {title:'Diagnóstico IA', content:'Good Food IA cruzó 90 días de datos por turno y detectó 4 palancas con impacto inmediato en margen.'},
+      {title:'4 acciones recomendadas', rows:[
+        {l:'1 · Plantilla lunes (-1 cocina)', v:'+260 €/mes'},
+        {l:'2 · Menú corto martes-jueves',   v:'+320 €/mes'},
+        {l:'3 · Campaña empresas jueves',    v:'+280 €/mes'},
+        {l:'4 · Lubina · ajuste +2 €/ración', v:'+160 €/mes'}
+      ]},
+      {title:'Impacto total estimado', content:'<strong>+1.020 €/mes</strong> sin inversión adicional. Tiempo de aplicación: 5 minutos. Riesgo de churn: bajo (acciones reversibles en 1 click).'},
+      {title:'Aprobación', content:'En producción Good Food IA aplica las 4 acciones automáticamente. Cocina, sala y carta digital reciben actualización en tiempo real.'}
+    ],
+    editarLabel:'Editar plan',
+    email:GF_CTX.cocina.email, telefono:GF_CTX.cocina.tel,
+    asunto:'Plan IA · 4 acciones de rentabilidad por turno',
+    cuerpoEmail:'Hola Ana,\n\nGood Food IA propone aplicar 4 acciones de rentabilidad:\n\n1. Plantilla lunes (-1 cocina) → +260 €/mes\n2. Menú corto martes-jueves → +320 €/mes\n3. Campaña empresas jueves → +280 €/mes\n4. Lubina · ajuste +2 €/ración → +160 €/mes\n\nImpacto total: +1.020 €/mes.\n\nDirección · Good Food IA',
+    textoWa:'Ana, plan IA listo: 4 acciones para +1.020€/mes. ¿Lo aplico esta semana? — Dirección Good Food IA'
+  });
+}
+
+// DIRECTOR · Carta viva — Aplicar nueva carta de temporada
+function gfModalActualizarCarta(){
+  accionModal({
+    title:'Nueva carta de temporada · Generada IA',
+    badge:'CARTA LISTA PARA PUBLICAR', badgeColor:'green',
+    fecha:'Generada por Good Food IA · análisis temporada actual',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M9 12h6M9 16h4"/></svg>',
+    sections:[
+      {title:'Cambios propuestos', content:'Good Food IA ha analizado margen, rotación y feedback de 6 meses para sugerir esta nueva carta.'},
+      {title:'4 platos nuevos', rows:[
+        {l:'Tartar de atún rojo de almadraba', v:'24 € · margen 71%'},
+        {l:'Risotto cremoso de boletus',       v:'19 € · margen 78%'},
+        {l:'Cordero lechal asado a la olla',   v:'28 € · margen 68%'},
+        {l:'Tarta de queso La Viña',           v:'8 € · margen 82%'}
+      ]},
+      {title:'2 platos retirados', rows:[
+        {l:'Foie a la plancha', v:'rotación baja · margen 60%'},
+        {l:'Carpaccio de buey', v:'churn alto · IA recomienda retirar'}
+      ]},
+      {title:'Margen medio nueva carta', content:'<strong>72,4%</strong> vs 68,2% actual (+4,2 pts). Impacto mensual estimado: <strong>+580 €</strong>.'}
+    ],
+    editarLabel:'Editar carta',
+    email:GF_CTX.cocina.email, telefono:GF_CTX.cocina.tel,
+    asunto:'Nueva carta de temporada · publicación esta semana',
+    cuerpoEmail:'Hola Ana,\n\nGood Food IA ha generado la nueva carta de temporada:\n\nNuevos platos:\n- Tartar de atún rojo de almadraba (24 €)\n- Risotto cremoso de boletus (19 €)\n- Cordero lechal asado a la olla (28 €)\n- Tarta de queso La Viña (8 €)\n\nRetirados:\n- Foie a la plancha\n- Carpaccio de buey\n\nMargen medio: 72,4% (vs 68,2% actual).\n\n¿Publicamos esta semana?\n\nDirección · Good Food IA',
+    textoWa:'Ana, nueva carta de temporada lista. Margen sube de 68% a 72%. ¿Publicamos esta semana en la digital? — Dirección Good Food IA'
+  });
+}
+
+// DIRECTOR · Informes — Descargar / ver informe semanal PDF
+function gfModalInformePDF(){
+  accionModal({
+    title:'Informe semanal · Good Food IA',
+    badge:'PDF LISTO',
+    fecha:'Semana 13 abr → 19 abr · 28 páginas',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>',
+    sections:[
+      {title:'Resumen ejecutivo', content:'Semana cerrada con <strong>facturación 28.640 €</strong> (+12% vs semana anterior). Margen bruto medio <strong>65,1%</strong>. Best-seller de la semana: chuletón Black Angus (38 raciones).'},
+      {title:'KPIs de la semana', rows:[
+        {l:'Cubiertos totales',  v:'748 (+9%)'},
+        {l:'Ticket medio',       v:'38,40 € (+1,8%)'},
+        {l:'Ocupación media',    v:'78%'},
+        {l:'Food cost real',     v:'28,4% (objetivo 27%)'},
+        {l:'Score satisfacción', v:'4,9 / 5'}
+      ]},
+      {title:'Acciones IA ejecutadas', content:'• 3 pedidos automáticos a proveedor (sin intervención)<br>• 2 ajustes de carta aplicados<br>• 7 reconfirmaciones de reserva enviadas (4 confirmaron, 1 canceló a tiempo)<br>• 1 alerta de merma escalada al chef'},
+      {title:'Próxima semana', content:'IA prevé <strong>+15% facturación</strong> (sábado 95% ocupación). Recomendación: confirmar 2 camareros extra cena viernes y sábado.'}
+    ],
+    editarLabel:'Ver PDF completo',
+    email:GF_CTX.director.email, telefono:GF_CTX.director.tel,
+    asunto:'Informe semanal Good Food IA · 13-19 abril',
+    cuerpoEmail:'Te adjunto el informe semanal generado automáticamente por Good Food IA:\n\n- Facturación: 28.640 € (+12%)\n- Cubiertos: 748 (+9%)\n- Margen bruto: 65,1%\n- Score satisfacción: 4,9/5\n\nLa IA ejecutó 3 pedidos automáticos, 2 ajustes de carta y 7 reconfirmaciones sin intervención manual.\n\nGood Food IA',
+    textoWa:'Informe semanal Good Food IA listo · 28.640 € facturación (+12%) · margen 65% · 4,9 satisfacción. PDF en email. — Dirección'
+  });
+}
+
+// DIRECTOR · Pipeline — Generar nueva propuesta corporativa
+function gfModalGenerarPropuesta(){
+  accionModal({
+    title:'Propuesta corporativa generada IA',
+    badge:'BORRADOR · LISTO PARA REVISAR',
+    fecha:'Generada en 8 minutos por Good Food IA',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    sections:[
+      {title:'Cliente', content:'<strong>Bilbao Industrial Group</strong> · evento de empresa · 32 comensales · jueves 15 mayo · 13:30'},
+      {title:'Menú adaptado', content:'Menú degustación 5 pasos (con opciones veganas y sin gluten) · maridaje incluido · café e infusiones.'},
+      {title:'Cálculo IA', rows:[
+        {l:'Comensales',         v:'32'},
+        {l:'Precio por comensal', v:'62 €'},
+        {l:'Total propuesta',     v:'1.984 €'},
+        {l:'Margen estimado',     v:'59,4% (sobre 34 eventos similares)'},
+        {l:'Cláusulas',           v:'Cancelación 72h · descuento 5% si confirma 14 días antes'}
+      ]},
+      {title:'Firma digital', content:'Propuesta lista para enviar con firma digital. El cliente recibe el PDF por email en 30 segundos y firma desde el navegador, sin descargar nada.'}
+    ],
+    editarLabel:'Editar propuesta',
+    email:GF_CTX.cliente_corp.email, telefono:GF_CTX.cliente_corp.tel,
+    asunto:'Propuesta evento empresa · Good Food IA · 32 comensales',
+    cuerpoEmail:'Buenas,\n\nAdjunto la propuesta para el evento del jueves 15 de mayo:\n\n- 32 comensales\n- Menú degustación 5 pasos (con opciones veganas y sin gluten)\n- Maridaje incluido\n- Total: 1.984 € (62 €/comensal)\n- Cancelación 72h · descuento 5% si confirmas 14 días antes\n\nFirma digital lista en el enlace adjunto.\n\nGood Food IA',
+    textoWa:'Hola, adjunto propuesta evento jueves 15 mayo · 32 comensales · 1.984 € · firma digital lista. ¿La revisas hoy? — Good Food IA'
+  });
+}
+
+// DIRECTOR · Pipeline — Ver propuesta concreta (per item)
+function gfModalVerPropuesta(p){
+  p = p || {t:'Propuesta'};
+  accionModal({
+    title:'Propuesta · ' + (p.t || ''),
+    badge:p.estado || 'EN CURSO',
+    fecha:p.fecha || '',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    sections:[
+      {title:'Datos del evento', rows:[
+        {l:'Cliente',     v:p.cliente || p.t || '—'},
+        {l:'Comensales',  v:(p.com || p.comensales || '32') + ''},
+        {l:'Fecha',       v:p.fecha || 'A confirmar'},
+        {l:'Importe',     v:p.importe || p.imp || '1.984 €'},
+        {l:'Estado',      v:p.estado || 'En curso'}
+      ]},
+      {title:'Resumen IA', content:'Good Food IA generó esta propuesta a partir del histórico de 34 eventos similares. Margen estimado <strong>59,4%</strong>. Riesgo de churn bajo. Firma digital lista para enviar.'},
+      {title:'Cláusulas', content:'Cancelación 72h · descuento 5% si confirma 14 días antes · pago 50% al confirmar, 50% el día del evento.'}
+    ],
+    editarLabel:'Editar propuesta',
+    email:p.email || GF_CTX.cliente_corp.email, telefono:p.tel || GF_CTX.cliente_corp.tel,
+    asunto:'Propuesta · ' + (p.t || 'Evento') + ' · Good Food IA',
+    cuerpoEmail:'Adjunto propuesta para ' + (p.t || 'el evento') + ' (' + (p.fecha || 'fecha por confirmar') + ').\n\nImporte: ' + (p.importe || p.imp || '1.984 €') + '.\n\nFirma digital lista. Avísame cualquier ajuste.\n\nGood Food IA',
+    textoWa:'Hola, propuesta para ' + (p.t || 'el evento') + ' · ' + (p.importe || p.imp || '1.984 €') + ' · firma digital lista. ¿La revisas? — Good Food IA'
+  });
+}
+
+// DIRECTOR · Simulador — Aplicar escenario óptimo IA
+function gfModalSimuladorEscenario(){
+  accionModal({
+    title:'Escenario óptimo · Good Food IA',
+    badge:'1.247 COMBINACIONES ANALIZADAS',
+    fecha:'Optimización IA · datos en tiempo real',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
+    sections:[
+      {title:'Configuración óptima', rows:[
+        {l:'Ocupación objetivo',   v:'82%'},
+        {l:'Ticket medio objetivo', v:'42 €'},
+        {l:'Food cost máximo',     v:'25%'},
+        {l:'Coste personal máximo', v:'32%'}
+      ]},
+      {title:'Resultado proyectado', content:'<strong>Beneficio mensual estimado: 24.800 €</strong> con riesgo mínimo de desviación. Mejora del +12% sobre escenario actual.'},
+      {title:'Acciones para alcanzarlo', content:'1. Subir precio medio carta +1,5 € (impacto en ticket)<br>2. Reasignar 1 turno de cocina lunes (impacto en personal)<br>3. Cerrar martes mediodía (impacto en ocupación efectiva)<br>4. Renegociar contrato proveedor pescado (impacto en food cost)'},
+      {title:'Aprobación', content:'En producción Good Food IA aplica estos ajustes automáticamente sin que tengas que mover ningún slider. Activar genera plan de cambio escalonado a 4 semanas.'}
+    ],
+    editarLabel:'Editar parámetros',
+    email:GF_CTX.director.email, telefono:GF_CTX.director.tel,
+    asunto:'Escenario óptimo IA · beneficio +12% mensual',
+    cuerpoEmail:'Good Food IA ha analizado 1.247 combinaciones y propone este escenario óptimo:\n\n- Ocupación 82% · Ticket 42 € · Food cost 25% · Personal 32%\n- Beneficio mensual estimado: 24.800 € (+12%)\n\n4 acciones para alcanzarlo. Plan a 4 semanas.\n\n¿Lo aplicamos?\n\nGood Food IA',
+    textoWa:'Escenario óptimo IA: 24.800 €/mes (+12%). 4 acciones, plan 4 semanas. ¿Lo aplicamos? — Good Food IA'
+  });
+}
+
+// CLIENTE · Fidelización — Reservar experiencia
+function gfModalReservarExperiencia(btn){
+  var titulo = 'Experiencia gourmet';
+  try {
+    var card = btn && btn.closest ? btn.closest('div[style*="background"]') : null;
+    if(card){
+      var tituloEl = card.querySelector('div[style*="font-weight:700"]');
+      if(tituloEl) titulo = (tituloEl.textContent || '').trim() || titulo;
+    }
+  } catch(e){}
+  accionModal({
+    title:'Reserva de experiencia · ' + titulo,
+    badge:'SOLICITUD ENVIADA · CONFIRMACIÓN <24H', badgeColor:'green',
+    fecha:'Reserva preliminar · pendiente confirmación restaurante',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2l3 6h6l-5 4 2 7-6-4-6 4 2-7-5-4h6z"/></svg>',
+    sections:[
+      {title:'Tu solicitud', rows:[
+        {l:'Experiencia',   v:titulo},
+        {l:'Cliente',       v:'Laura García'},
+        {l:'Visitas previas', v:'7'},
+        {l:'Estado',        v:'Solicitud enviada'},
+        {l:'Confirmación esperada', v:'En menos de 24h'}
+      ]},
+      {title:'Lo que la IA ha hecho', content:'Good Food IA ha cruzado tu perfil gastronómico (sin gluten, sin frutos secos, te gusta el chuletón y el vino de Ribera del Duero) con la disponibilidad de mesas y ha reservado <strong>preliminarmente</strong> el sábado 19 de abril a las 21:00, mesa interior tranquila para 2 personas. El restaurante confirmará en menos de 24h.'},
+      {title:'Próximos pasos', content:'Recibirás email + WhatsApp de confirmación. Si necesitas cambios, puedes editar desde aquí.'}
+    ],
+    editarLabel:'Editar reserva',
+    email:GF_CTX.reservas.email, telefono:GF_CTX.reservas.tel,
+    asunto:'Reserva experiencia · ' + titulo,
+    cuerpoEmail:'Hola,\n\nMe gustaría confirmar la reserva de la experiencia:\n\n- Experiencia: ' + titulo + '\n- Cliente: Laura García\n- Sin gluten · sin frutos secos\n- Sábado 19 abril · 21:00 · 2 personas · mesa interior tranquila\n\n¿Me confirmáis disponibilidad?\n\nGracias,\nLaura',
+    textoWa:'Hola, me gustaría confirmar la reserva de "' + titulo + '" para el sábado 19 abril a las 21:00, mesa para 2 (sin gluten). Gracias — Laura'
+  });
+}
+
+// CLIENTE · Reserva especial — Confirmar menú y firmar
+function gfModalConfirmarMenuEspecial(btn){
+  accionModal({
+    title:'Confirmación de menú · Reserva especial',
+    badge:'CONTRATO DIGITAL LISTO PARA FIRMAR',
+    fecha:'Cumpleaños · sábado 26 abril · 21:00 · 8 personas',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    sections:[
+      {title:'Tu evento', rows:[
+        {l:'Tipo',       v:'Cumpleaños privado'},
+        {l:'Fecha',      v:'Sábado 26 abril · 21:00'},
+        {l:'Comensales', v:'8 personas'},
+        {l:'Mesa',       v:'Salón privado · vista terraza'},
+        {l:'Cliente',    v:'Laura García'}
+      ]},
+      {title:'Menú degustación 6 pasos', content:'Aperitivo · Tartar de atún · Risotto de boletus · Lubina al horno (versión sin gluten para Laura) · Chuletón Black Angus al carbón · Tarta de queso La Viña con velas y dedicatoria'},
+      {title:'Maridaje', content:'Verdejo Rueda · Ribera del Duero · Pedro Ximénez para postre · agua mineral · café de especialidad'},
+      {title:'Importe', rows:[
+        {l:'Menú × 8',     v:'520 €'},
+        {l:'Maridaje × 8', v:'168 €'},
+        {l:'Decoración',   v:'40 €'},
+        {l:'Total',        v:'728 € · IVA incluido'}
+      ]},
+      {title:'Firma digital', content:'Al firmar confirmas la reserva y reservas el salón privado. Cancelación gratis hasta 72h antes del evento.'}
+    ],
+    editarLabel:'Editar menú',
+    email:GF_CTX.reservas.email, telefono:GF_CTX.reservas.tel,
+    asunto:'Confirmación cumpleaños sábado 26 abril · 8 personas',
+    cuerpoEmail:'Hola,\n\nConfirmo el menú degustación 6 pasos para el cumpleaños del sábado 26 abril a las 21:00, 8 personas, salón privado.\n\nTotal: 728 € (IVA incluido).\n\nFirmo el contrato digital adjunto. Aviso de cancelación 72h antes si fuera necesario.\n\nGracias,\nLaura García',
+    textoWa:'Hola, confirmo cumpleaños sábado 26 abril 21:00 · 8 personas · salón privado · 728 €. Firmo contrato digital. Gracias — Laura'
+  });
+  if(btn){ setTimeout(function(){ btn.textContent='✓ Menú confirmado'; btn.style.background='#1A6B30'; btn.style.color='#fff'; }, 100); }
+}
+
+// CLIENTE · Reserva especial — Solicitar cambios
+function gfModalSolicitarCambiosMenu(){
+  accionModal({
+    title:'Solicitar cambios en el menú',
+    badge:'AJUSTES <5 MIN',
+    fecha:'Good Food IA actualiza la propuesta automáticamente',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+    sections:[
+      {title:'Cambios habituales', content:'• Sustituir un plato por otro de la carta<br>• Añadir/quitar maridaje<br>• Cambiar postre por opción sin gluten · sin frutos secos<br>• Ajustar número de comensales<br>• Cambiar hora o fecha (sujeto a disponibilidad)'},
+      {title:'Cómo funciona', content:'Good Food IA recibe tu solicitud, ajusta el menú según tus preferencias y vuelve a enviarte la propuesta actualizada en <strong>menos de 5 minutos</strong>. Sin esperas, sin llamadas.'},
+      {title:'Tu perfil registrado', content:'Sin gluten · sin frutos secos · te gusta chuletón y vino Ribera del Duero. Estos datos se aplican automáticamente.'}
+    ],
+    editarLabel:'Componer cambio',
+    email:GF_CTX.reservas.email, telefono:GF_CTX.reservas.tel,
+    asunto:'Cambios en mi reserva especial · Laura García',
+    cuerpoEmail:'Hola,\n\nMe gustaría hacer estos cambios en el menú de la reserva especial:\n\n[describe aquí los cambios]\n\nMi perfil: sin gluten · sin frutos secos.\n\nGracias,\nLaura',
+    textoWa:'Hola, me gustaría hacer cambios en mi reserva especial. ¿Podemos comentarlo? — Laura'
+  });
+}
+
+// PROVEEDOR · Pedidos — Confirmar pedido GF-089
+function gfModalConfirmarPedido(btn){
+  accionModal({
+    title:'Confirmación pedido #GF-2025-089',
+    badge:'PEDIDO CONFIRMADO · ENTREGA MAÑANA 10:00', badgeColor:'green',
+    fecha:'Generado por Good Food IA · stock crítico detectado',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>',
+    sections:[
+      {title:'Datos del pedido', rows:[
+        {l:'Número',          v:'#GF-2025-089'},
+        {l:'Cliente',         v:'Good Food IA · Restaurante'},
+        {l:'Producto',        v:'Solomillo de ternera (8 kg · 28-30 días maduración)'},
+        {l:'Importe',         v:'472 €'},
+        {l:'Entrega',         v:'Mañana viernes · 10:00 ± 30 min'},
+        {l:'Albarán digital', v:'Generado al confirmar'}
+      ]},
+      {title:'Origen del pedido', content:'Good Food IA detectó stock para 2 días y lanzó el pedido automáticamente sin esperar a la rotura. Última actualización: hoy 13:42.'},
+      {title:'Calidad esperada', content:'Cortes de 250-280 g · maduración 28-30 días (igual que entregas anteriores 9,1/10). Tu valoración semanal subirá a <strong>9,3/10</strong> si entrega es puntual.'}
+    ],
+    editarLabel:'Editar pedido',
+    email:'pedidos@goodfood.es', telefono:'34944555000',
+    asunto:'Confirmación pedido #GF-2025-089 · solomillo 8 kg',
+    cuerpoEmail:'Hola,\n\nConfirmo el pedido #GF-2025-089:\n\n- Producto: Solomillo de ternera 8 kg (28-30 días maduración)\n- Importe: 472 €\n- Entrega: mañana viernes 10:00 (±30 min)\n- Albarán digital generado\n\nMantenemos calibrado y calidad de entregas anteriores.\n\nCarnes Ibáñez S.L.',
+    textoWa:'Confirmado pedido #GF-2025-089 · solomillo 8 kg · entrega mañana viernes 10:00 · albarán digital generado. — Carnes Ibáñez'
+  });
+  if(btn){ setTimeout(function(){ btn.textContent='✓ Confirmado'; btn.style.background='#1A6B30'; btn.style.color='#fff'; btn.style.border='none'; }, 100); }
+}
+
+// PROVEEDOR · Pedidos — Modificar cantidad
+function gfModalModificarCantidadPedido(btn){
+  accionModal({
+    title:'Modificar cantidad · Pedido #GF-2025-089',
+    badge:'AJUSTE EN CURSO',
+    fecha:'Pedido pendiente de confirmación final',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+    sections:[
+      {title:'Cantidad solicitada vs propuesta', rows:[
+        {l:'Solicitado por IA',  v:'8 kg solomillo'},
+        {l:'Disponible en cámara', v:'12 kg'},
+        {l:'Propuesta nueva',    v:'10 kg (+2 kg)'},
+        {l:'Importe nuevo',      v:'590 € (+118 €)'},
+        {l:'Justificación',      v:'Stock extra para cubrir cena del sábado'}
+      ]},
+      {title:'Impacto', content:'Aumentar a 10 kg te permite cubrir la previsión IA de la cena del sábado (98% ocupación esperada) sin generar otro pedido. Margen logístico mejor.'},
+      {title:'Aprobación', content:'Si Good Food IA acepta la modificación, el albarán se actualiza automáticamente y se genera nueva confirmación.'}
+    ],
+    editarLabel:'Editar propuesta',
+    email:'pedidos@goodfood.es', telefono:'34944555000',
+    asunto:'Modificación pedido #GF-2025-089 · 8 kg → 10 kg',
+    cuerpoEmail:'Hola,\n\nPropongo modificar el pedido #GF-2025-089:\n\n- Solicitado: 8 kg solomillo\n- Propuesta: 10 kg (+2 kg)\n- Importe: 590 € (+118 €)\n- Motivo: cubrir previsión cena sábado (98% ocupación esperada)\n\n¿Lo aplicamos?\n\nCarnes Ibáñez S.L.',
+    textoWa:'Hola, propongo subir el pedido #GF-2025-089 de 8 kg a 10 kg solomillo (+118 €). Stock disponible y cubre cena sábado. ¿Lo aplicamos? — Carnes Ibáñez'
+  });
+  if(btn){ setTimeout(function(){ btn.textContent='✓ Solicitud enviada a Good Food IA'; btn.style.borderColor='#1A6B30'; btn.style.color='#1A6B30'; setTimeout(function(){ btn.textContent='Modificar cantidad'; btn.style.borderColor='rgba(212,87,42,.4)'; btn.style.color='#D4572A'; }, 2800); }, 100); }
+}
+
+// PROVEEDOR · Entregas — Enviar albarán digital
+function gfModalEnviarAlbaran(btn){
+  accionModal({
+    title:'Albarán digital #ALB-2025-3284',
+    badge:'LISTO PARA ENVIAR', badgeColor:'green',
+    fecha:'Entrega de hoy · 10:00 · firmado digitalmente',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M9 12h6M9 16h4M14 2v6h6"/></svg>',
+    sections:[
+      {title:'Datos albarán', rows:[
+        {l:'Número',     v:'#ALB-2025-3284'},
+        {l:'Pedido ref.', v:'#GF-2025-089'},
+        {l:'Producto',   v:'Solomillo de ternera 8 kg'},
+        {l:'Calibrado',  v:'Cortes 250-280 g · maduración 28-30 días'},
+        {l:'Importe',    v:'472 € (IVA incluido)'},
+        {l:'Vencimiento factura', v:'30 días'}
+      ]},
+      {title:'Trazabilidad', content:'Lote 2025/04/L-3284 · matadero certificado · validación AESAN 2025 automática · adjunta certificado de origen y temperatura de transporte.'},
+      {title:'Estado', content:'Albarán firmado digitalmente por Good Food IA al recibir. Factura se generará automáticamente en facturación.'}
+    ],
+    editarLabel:'Editar albarán',
+    email:'pedidos@goodfood.es', telefono:'34944555000',
+    asunto:'Albarán digital #ALB-2025-3284 · solomillo 8 kg',
+    cuerpoEmail:'Adjunto albarán digital de la entrega de hoy:\n\n- Albarán: #ALB-2025-3284\n- Pedido: #GF-2025-089\n- Producto: solomillo de ternera 8 kg\n- Importe: 472 €\n- Lote: 2025/04/L-3284 · validación AESAN 2025 OK\n\nLa factura se generará automáticamente.\n\nCarnes Ibáñez S.L.',
+    textoWa:'Albarán digital #ALB-2025-3284 enviado · solomillo 8 kg · 472 € · trazabilidad AESAN OK. Factura automática en 24h. — Carnes Ibáñez'
+  });
+  if(btn){ setTimeout(function(){ btn.textContent='✓ Albarán enviado'; btn.style.background='#1A6B30'; btn.style.color='#fff'; btn.style.border='none'; }, 100); }
+}
+
+// PROVEEDOR · Entregas — Reportar incidencia
+function gfModalReportarIncidencia(btn){
+  accionModal({
+    title:'Reportar incidencia · Entrega de hoy',
+    badge:'INCIDENCIA EN CURSO', badgeColor:'terra',
+    fecha:'Pedido #GF-2025-088 · Lubina',
+    icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 19h20L12 2z"/><path d="M12 9v5M12 16.5v.5"/></svg>',
+    sections:[
+      {title:'Tipo de incidencia', content:'Calibrado irregular en la entrega de lubina (lote 2025/04/L-3279). Score de calidad bajó a <strong>7,2/10</strong> esta semana (objetivo 8,5/10).'},
+      {title:'Datos detectados por la IA', rows:[
+        {l:'Piezas recepcionadas', v:'5 (rango 320-680 g)'},
+        {l:'Calibrado solicitado', v:'500-600 g uniforme'},
+        {l:'Piezas fuera de rango', v:'2 de 5 (40%)'},
+        {l:'Impacto en merma',     v:'+0,4% sobre objetivo'}
+      ]},
+      {title:'Propuesta de resolución', content:'1) Sustituir las 2 piezas fuera de rango en la próxima entrega (sin coste extra)<br>2) Garantizar calibrado uniforme próximas 3 entregas<br>3) Si se cumple, score IA volverá a 9,1/10 en 2 semanas'},
+      {title:'Histórico', content:'Es la primera incidencia en 12 semanas. Tu valoración media sigue siendo <strong>9,1/10</strong> (top 5% del sector).'}
+    ],
+    editarLabel:'Editar incidencia',
+    email:'pedidos@goodfood.es', telefono:'34944555000',
+    asunto:'Incidencia entrega lubina #GF-2025-088 · plan corrección',
+    cuerpoEmail:'Hola,\n\nReporto incidencia en la entrega de lubina (lote L-3279):\n\n- 2 de 5 piezas fuera del rango 500-600 g\n- Score IA bajó a 7,2/10\n\nPropuesta de resolución:\n1. Sustituir 2 piezas en próxima entrega (sin coste)\n2. Garantizar calibrado uniforme próximas 3 entregas\n3. Score volverá a 9,1/10 en 2 semanas\n\nCarnes Ibáñez S.L.',
+    textoWa:'Hola, reporto incidencia lubina · 2 piezas fuera de rango · sustituyo en próxima entrega sin coste y garantizo calibrado próximas 3. — Carnes Ibáñez'
+  });
+  if(btn){ setTimeout(function(){ btn.textContent='✓ Incidencia registrada'; btn.style.borderColor='#D4572A'; btn.style.background='rgba(212,87,42,.12)'; setTimeout(function(){ btn.textContent='Reportar incidencia'; btn.style.background='transparent'; }, 2800); }, 100); }
 }
 
 
