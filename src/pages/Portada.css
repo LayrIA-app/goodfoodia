@@ -1,0 +1,275 @@
+/* ══════════════════════════════════════════════════════════════════
+   Good Food IA · Portada (roleScreen)
+   Identidad: oro #C9A84C · dark #1A1208 · cream #FAF7F2 · terra #D4572A
+   Cumple Reglas 2/3 (responsive 360→1920, sin overflow horizontal)
+   ══════════════════════════════════════════════════════════════════ */
+
+#roleScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: linear-gradient(135deg, var(--cream) 50%, var(--dark-2) 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 0 16px;
+}
+
+/* Orbes decorativos (ocultos en móvil) */
+.rs-orb { position: absolute; border-radius: 50%; pointer-events: none; }
+.rs-orb-a {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation: orb1 14s ease-in-out infinite;
+}
+.rs-orb-b {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(212,87,42,.07) 0%, transparent 70%);
+  bottom: -80px; right: -80px;
+  animation: orb2 16s ease-in-out infinite;
+}
+@keyframes orb1 { 0%, 100% { transform: translate(0,0) scale(1); } 40% { transform: translate(30px,-20px) scale(1.08); } 70% { transform: translate(-15px,15px) scale(.96); } }
+@keyframes orb2 { 0%, 100% { transform: translate(0,0); } 35% { transform: translate(-40px,20px); } 70% { transform: translate(20px,-10px); } }
+
+.rs-split-line {
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(201,168,76,.45), transparent);
+  transform: translateX(-50%);
+}
+
+.rs-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  position: relative; z-index: 1; width: 100%;
+}
+
+/* Logo pill superior */
+.rs-logo-pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(201,168,76,.12);
+  border: 1px solid rgba(201,168,76,.32);
+  border-radius: 50px;
+  padding: 8px 22px 8px 10px;
+  animation: fadeUp .5s ease both;
+}
+.rs-logo-badge {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  display: flex; align-items: center; justify-content: center;
+}
+.rs-logo-name {
+  font-family: 'Lobster', cursive;
+  font-size: 1.5rem; color: var(--dark); line-height: 1;
+}
+
+/* Typewriter */
+.rs-typewriter {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem; font-weight: 600; letter-spacing: .06em;
+  color: rgba(201,168,76,.75);
+  text-align: center; margin-bottom: 4px;
+  min-height: 1.4em;
+  animation: fadeUp .5s .1s ease both; opacity: 0; animation-fill-mode: forwards;
+}
+.rs-tw-cursor { display: inline-block; width: 2px; height: .82em; background: var(--gold); margin-left: 2px; vertical-align: middle; animation: twBlink .7s step-end infinite; }
+
+/* Logo principal Lobster */
+.rs-main-logo {
+  font-family: 'Lobster', cursive;
+  font-size: 4.4rem; line-height: 1; letter-spacing: .01em;
+  text-align: center;
+  animation: fadeUp .6s .05s ease both; opacity: 0; animation-fill-mode: forwards;
+}
+.rs-mlt-dark { color: var(--dark); }
+.rs-mlt-light { color: #E8E0D0; }
+.rs-mlt-gold { color: var(--gold); }
+
+.rs-main-logo-orn { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 8px 0 4px; }
+.rs-mol { height: 1px; width: 52px; background: linear-gradient(90deg, transparent, rgba(201,168,76,.55), transparent); }
+.rs-mod { width: 5px; height: 5px; transform: rotate(45deg); background: var(--gold); opacity: .7; }
+.rs-main-logo-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .65rem; letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(201,168,76,.6);
+}
+
+/* Counter */
+.rs-counter-row {
+  display: flex; align-items: center; gap: 8px;
+  animation: fadeUp .5s .15s ease both; opacity: 0; animation-fill-mode: forwards;
+}
+.rs-counter-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terra); animation: pulse 1.6s ease-in-out infinite; }
+.rs-counter-txt { font-size: .76rem; color: rgba(201,168,76,.45); letter-spacing: .08em; }
+.rs-counter-txt span { color: var(--gold); font-weight: 700; font-size: .82rem; }
+
+/* Canales */
+.rs-canales {
+  display: flex; align-items: center; gap: 0;
+  background: rgba(0,0,0,.22); border-radius: 30px;
+  padding: 5px 12px; margin-top: 4px;
+  justify-content: center; max-width: 320px;
+  animation: fadeUp .5s .18s ease both; opacity: 0; animation-fill-mode: forwards;
+}
+.rs-canal { display: flex; align-items: center; gap: 7px; padding: 4px 14px; }
+.rs-canal:not(:last-child) { border-right: 1px solid rgba(255,255,255,.13); }
+.rs-canal-ico { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rs-canal-lbl { font-size: .58rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.rs-canales-sub {
+  font-size: .5rem; font-weight: 600;
+  color: rgba(201,168,76,.32);
+  letter-spacing: .14em; text-transform: uppercase; text-align: center;
+  margin-bottom: 14px;
+  animation: fadeUp .5s .19s ease both; opacity: 0; animation-fill-mode: forwards;
+}
+
+/* Cards de perfil — 4 perfiles GoodFood */
+.rs-cards {
+  display: flex; gap: 18px; justify-content: center;
+  animation: fadeUp .5s .22s ease both; opacity: 0; animation-fill-mode: forwards;
+  flex-wrap: wrap; max-width: 100%;
+}
+.rs-card {
+  border-radius: 14px;
+  padding: 26px 20px;
+  text-align: center;
+  cursor: pointer;
+  width: 172px;
+  border: none;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.4,0,.2,1.4), box-shadow .3s, filter .3s, opacity .3s;
+}
+.rs-card::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 40%; height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+  transform: skewX(-20deg);
+  transition: left .5s;
+}
+.rs-card:hover::after { left: 130%; }
+.rs-cards:hover .rs-card { filter: blur(1.5px); opacity: .55; transform: scale(.97); }
+.rs-cards:hover .rs-card:hover { filter: blur(0); opacity: 1; transform: scale(1.07) translateY(-7px); box-shadow: 0 22px 52px rgba(0,0,0,.3); }
+
+/* Tarjeta director — gold sólido */
+.rs-card-director {
+  background: var(--gold);
+  border: 1px solid rgba(26,18,8,.15);
+}
+/* Tarjeta empleado — cream */
+.rs-card-empleado {
+  background: #E8E0D0;
+  border: 1px solid rgba(201,168,76,.3);
+}
+/* Tarjeta cliente — dark con acento terra */
+.rs-card-cliente {
+  background: var(--dark);
+  border: 1px solid rgba(212,87,42,.3);
+}
+/* Tarjeta proveedor — terra/oscuro */
+.rs-card-proveedor {
+  background: rgba(212,87,42,.18);
+  border: 1px solid rgba(212,87,42,.45);
+}
+
+.rs-pc-ico {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  background: rgba(255,255,255,.25);
+}
+.rs-card-cliente .rs-pc-ico { background: rgba(212,87,42,.2); }
+.rs-card-proveedor .rs-pc-ico { background: rgba(212,87,42,.2); }
+
+.rs-pc-desc {
+  font-size: .6rem; line-height: 1.6; margin-bottom: 8px;
+  color: rgba(26,18,8,.75);
+}
+.rs-card-cliente .rs-pc-desc { color: rgba(232,224,208,.6); }
+.rs-card-proveedor .rs-pc-desc { color: rgba(212,87,42,.85); }
+
+.rs-pc-name {
+  font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+.rs-card-cliente .rs-pc-name { color: #E8E0D0; }
+.rs-card-proveedor .rs-pc-name { color: var(--terra); }
+
+.rs-pc-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  padding: 7px 18px; border-radius: 8px;
+  display: inline-block;
+  background: var(--dark); color: var(--gold);
+  transition: transform .15s;
+}
+.rs-card-empleado .rs-pc-btn { background: var(--dark); color: var(--gold); }
+.rs-card-cliente .rs-pc-btn { background: var(--terra); color: #fff; }
+.rs-card-proveedor .rs-pc-btn { background: var(--terra); color: #fff; }
+.rs-card:hover .rs-pc-btn { transform: translateY(-1px); }
+
+/* Footer */
+.rs-footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 10px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(201,168,76,.04);
+  border-top: 1px solid rgba(201,168,76,.1);
+}
+.rs-footer-txt {
+  font-size: .48rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  font-weight: 600; color: rgba(201,168,76,.4);
+}
+.rs-footer-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); opacity: .5; }
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE — REGLAS 2 + 3
+   ══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .rs-main-logo { font-size: 3.6rem; }
+}
+
+@media (max-width: 768px) {
+  .rs-orb { display: none !important; }
+  .rs-split-line { display: none !important; }
+  .rs-inner { gap: 8px; }
+  .rs-main-logo { font-size: 2.8rem; }
+  .rs-main-logo-sub { font-size: .55rem; }
+  .rs-canales { max-width: 290px; }
+  .rs-cards {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    width: 100%; max-width: 380px; margin: 0 auto;
+  }
+  .rs-card { width: 100% !important; padding: 16px 12px !important; }
+  .rs-pc-ico { width: 36px !important; height: 36px !important; margin-bottom: 8px !important; }
+  .rs-pc-desc { font-size: .55rem !important; }
+  .rs-pc-name { font-size: .68rem !important; margin-bottom: 8px !important; }
+  .rs-pc-btn { font-size: .56rem !important; padding: 5px 12px !important; }
+  .rs-cards:hover .rs-card { filter: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 480px) {
+  .rs-main-logo { font-size: 2.4rem; }
+  .rs-main-logo-sub { font-size: .5rem; letter-spacing: .26em; }
+  .rs-canales { max-width: 280px; }
+  .rs-canal { padding: 4px 10px; }
+}
+
+@media (max-width: 360px) {
+  .rs-main-logo { font-size: 2.05rem; }
+  .rs-canal-lbl { font-size: .5rem; }
+  .rs-cards { max-width: 320px; }
+}
